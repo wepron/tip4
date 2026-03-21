@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Конфигуратор{% endblock %}
+
+{% block content %}
+<div class="index">
+    <div class="menu-items">
+        <div class="menu-item">
+            <a href="{{ url_for('colors') }}">Цвета</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('modules') }}">Модули</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('fittings') }}">Фурнитура</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('kitchen_types') }}">Тип кухни</a>
+        </div>
+        <div class="menu-item">
+        <a href="{{ url_for('kitchen_base') }}">База</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

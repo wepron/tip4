@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Главная - Тяп-Ляп{% endblock %}
+
+{% block content %}
+<div class="index">
+    <div class="menu-items">
+        <div class="menu-item">
+            <a href="{{ url_for('deals') }}">Сделки</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('stickers') }}">Наклейки</a>
+        </div>
+        <div class="menu-item">
+            <a href="{{ url_for('configurator') }}">Конфигуратор</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

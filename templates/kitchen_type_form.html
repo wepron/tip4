@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ title }}</h1>
+
+<form method="POST">
+    <div>
+        <label>Название:</label>
+        <input type="text" name="name" value="{{ kitchen_type.name if kitchen_type else '' }}" required>
+    </div>
+    
+    <div>
+        <label>Короткое название:</label>
+        <input type="text" name="short_name" value="{{ kitchen_type.short_name if kitchen_type else '' }}" required>
+    </div>
+    
+    <div>
+        <button type="submit">Сохранить</button>
+        <a href="{{ url_for('kitchen_types') }}">Отмена</a>
+    </div>
+</form>
+
+{% endblock %}

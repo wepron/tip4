@@ -1,0 +1,253 @@
+/* ========== ЦВЕТА ========== */
+.colors-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.colors-header h1 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.btn-create {
+    background-color: #0066cc;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.btn-create:hover {
+    background-color: #ff0000;
+}
+
+.colors-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.colors-table th,
+.colors-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.colors-table th {
+    background-color: #f5f5f5;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit {
+    background-color: #0066cc;
+    color: white;
+    padding: 4px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.85rem;
+}
+
+.btn-edit:hover {
+    background-color: #ff0000;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+.flash {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.flash.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.color-form {
+    max-width: 500px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-save {
+    background-color: #0066cc;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background-color: #ff0000;
+}
+
+.btn-cancel {
+    background-color: #6c757d;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Мобилки */
+@media (max-width: 1000px) {
+    .colors-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .actions {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .btn-edit, .btn-delete {
+        display: inline-block;
+        text-align: center;
+    }
+}
+
+/* ========== ФУРНИТУРА ========== */
+.fittings-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.fittings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.fittings-header h1 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.fittings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.fittings-table th,
+.fittings-table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.fittings-table th {
+    background-color: #f5f5f5;
+}
+
+.picture-cell img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.no-image {
+    color: #999;
+    font-style: italic;
+}
+
+.fitting-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.fitting-form {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.current-picture {
+    margin: 10px 0;
+}
+
+.current-picture img {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+/* Мобилки */
+@media (max-width: 1000px) {
+    .fittings-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .fittings-table {
+        font-size: 0.9rem;
+    }
+    
+    .fittings-table th,
+    .fittings-table td {
+        padding: 8px;
+    }
+    
+    .picture-cell img {
+        width: 40px;
+        height: 40px;
+    }
+}

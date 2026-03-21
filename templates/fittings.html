@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}Фурнитура{% endblock %}
+
+{% block content %}
+<div class="fittings-container">
+    <div class="fittings-header">
+        <h1>Управление фурнитурой</h1>
+        <a href="{{ url_for('fitting_create') }}" class="btn-create">+ Создать фурнитуру</a>
+    </div>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    {% if fittings %}
+    <table class="fittings-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Изображение</th>
+                <th>Название</th>
+                <th>Вес (кг)</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fitting in fittings %}
+            <tr>
+                <td>{{ fitting.id }}</td>
+                <td class="picture-cell">
+                    {% if fitting.path_picture %}
+                        <img src="{{ url_for('static', filename='images/fittings/' + fitting.path_picture.split('/')[-1]) }}" 
+                             alt="{{ fitting.name }}" 
+                             style="width: 50px; height: 50px; object-fit: cover;">
+                    {% else %}
+                        <span class="no-image">Нет фото</span>
+                    {% endif %}
+                </td>
+                <td>{{ fitting.name }}</td>
+                <td>{{ fitting.weight if fitting.weight else '-' }} гр. </td>
+                <td class="actions">
+                    <a href="{{ url_for('fitting_edit', id=fitting.id) }}" class="btn-edit">Редактировать</a>
+                    <form action="{{ url_for('fitting_delete', id=fitting.id) }}" method="POST" style="display: inline;">
+                        <button type="submit" class="btn-delete" onclick="return confirm('Удалить фурнитуру {{ fitting.name }}? Изображение переместится в корзину.')">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="empty-state">
+        <p>Фурнитуры пока нет. Создайте первую фурнитуру!</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

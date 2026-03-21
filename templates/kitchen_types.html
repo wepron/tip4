@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Типы кухни{% endblock %}
+
+{% block content %}
+
+<h1>Типы кухни</h1>
+
+<a href="{{ url_for('kitchen_type_create') }}">Создать тип кухни</a>
+
+<table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Короткое название</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for type in types %}
+        <tr>
+            <td>{{ type.id }}</td>
+            <td>{{ type.name }}</td>
+            <td>{{ type.short_name }}</td>
+            <td>
+                <a href="{{ url_for('kitchen_type_edit', id=type.id) }}">Редактировать</a>
+                <form method="POST" action="{{ url_for('kitchen_type_delete', id=type.id) }}" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Удалить?')">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('index') }}">На главную</a>
+
+{% endblock %}

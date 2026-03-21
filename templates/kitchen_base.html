@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    <form action="/kitchen_base/create" method="POST">
+        <input type="text" name="kitchen_base" required>
+        <button type="submit">Создать</button>
+    </form>
+    
+    {% for base in bases %}
+    <div>
+        <form action="/kitchen_base/{{ base.id }}/edit" method="POST" style="display: inline;">
+            <input type="text" name="kitchen_base" value="{{ base.kitchen_base }}">
+            <button type="submit">Редактировать</button>
+        </form>
+        <form action="/kitchen_base/{{ base.id }}/delete" method="POST" style="display: inline;">
+            <button type="submit">Удалить</button>
+        </form>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

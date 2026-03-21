@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="color-form-container">
+    <h1>{{ title }}</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" class="color-form">
+        <div class="form-group">
+            <label for="name">Полное имя цвета:</label>
+            <input type="text" id="name" name="name" value="{{ color.name if color else '' }}" required>
+            <small>Пример: Кашемир, Дуб-Вотан, Графит</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="short_name">Короткое имя:</label>
+            <input type="text" id="short_name" name="short_name" value="{{ color.short_name if color else '' }}" required>
+            <small>Пример: К, В, ГВ (без пробелов)</small>
+        </div>
+        
+        <div class="form-buttons">
+            <button type="submit" class="btn-save">Сохранить</button>
+            <a href="{{ url_for('colors') }}" class="btn-cancel">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

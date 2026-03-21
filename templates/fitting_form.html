@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="fitting-form-container">
+    <h1>{{ title }}</h1>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash {{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" class="fitting-form" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="name">Название фурнитуры:</label>
+            <input type="text" id="name" name="name" value="{{ fitting.name if fitting else '' }}" required>
+            <small>Пример: Ручка, Петля, Направляющая</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="weight">Вес (гр. ):</label>
+            <input type="number" id="weight" name="weight" step="any" value="{{ fitting.weight if fitting and fitting.weight else '' }}">
+            <small>Необязательно, но рекомендуется. Можно использовать дробные числа (например, 0.5)</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="picture">Изображение:</label>
+            {% if fitting and fitting.path_picture %}
+                <div class="current-picture">
+                    <p>Текущее изображение:</p>
+                    <img src="{{ url_for('static', filename='images/fittings/' + fitting.path_picture.split('/')[-1]) }}" 
+                         alt="{{ fitting.name }}" style="max-width: 100px;">
+                </div>
+            {% endif %}
+            <input type="file" id="picture" name="picture" accept="image/png,image/jpeg,image/jpg,image/gif,image/webp">
+            <small>Необязательно. Рекомендуемые форматы: PNG, JPG, JPEG, GIF, WEBP</small>
+        </div>
+        
+        <div class="form-buttons">
+            <button type="submit" class="btn-save">Сохранить</button>
+            <a href="{{ url_for('fittings') }}" class="btn-cancel">Отмена</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
