@@ -33,7 +33,7 @@
                 <div class="current-picture">
                     <p>Текущее изображение:</p>
                     <img src="{{ url_for('static', filename='images/fittings/' + fitting.path_picture.split('/')[-1]) }}" 
-                         alt="{{ fitting.name }}" style="max-width: 100px;">
+                         alt="{{ fitting.name }}" style="max-width: 500px;">
                 </div>
             {% endif %}
             <input type="file" id="picture" name="picture" accept="image/png,image/jpeg,image/jpg,image/gif,image/webp">

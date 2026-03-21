@@ -1,10 +1,16 @@
+
+
+
 .nav_m {
     display: flex;
+    border-bottom: 14px solid rgb(255, 0, 0);
     gap: 20px;
 }
 
 .nav_m a {
-    background-color: blue;
+        
+    border: 4px solid rgb(255, 0, 0);
+    background-color: rgba(0, 0, 255, 0.75);
     font-size: 2.5rem;
     text-decoration: none;
     color: white;
@@ -13,6 +19,55 @@
 .nav_m a:hover {
     color: rgb(255, 0, 0);
 }
+
+
+.btn-right-container {
+    text-align: right;
+    padding: 1rem;
+}
+
+.btn-create {
+    text-decoration: none;
+    font-size: 1.5rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+    padding: 1rem 1rem;
+    background-color: blue;
+    color: white;
+    padding: 0.3rem 0.3rem;
+    border-radius: 0.4rem;
+    
+}
+
+.btn-create:hover {
+    background-color: #ff0000;
+}
+
+
+.btn-edit {
+    background-color: blue;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.btn-edit:hover {
+    background-color: #ff0000;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.btn-delete:hover {
+    background-color: blue;
+}
+
 
 
 /* ========== ЦВЕТА ========== */
@@ -30,17 +85,7 @@
     color: #333;
 }
 
-.btn-create {
-    background-color: #0066cc;
-    color: white;
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 8px;
-}
 
-.btn-create:hover {
-    background-color: #ff0000;
-}
 
 .colors-table {
     width: 100%;
@@ -63,32 +108,9 @@
     gap: 8px;
 }
 
-.btn-edit {
-    background-color: #0066cc;
-    color: white;
-    padding: 4px 10px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 0.85rem;
-}
 
-.btn-edit:hover {
-    background-color: #ff0000;
-}
 
-.btn-delete {
-    background-color: #dc3545;
-    color: white;
-    padding: 4px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.85rem;
-}
 
-.btn-delete:hover {
-    background-color: #c82333;
-}
 
 .flash {
     padding: 10px;
@@ -267,4 +289,126 @@
         width: 40px;
         height: 40px;
     }
+}
+
+
+
+/* Таблица фурнитуры */
+.furniture-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.furniture-table th,
+.furniture-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.furniture-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.furniture-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Ячейка с изображением */
+.image-cell {
+    text-align: center;
+}
+
+.image-cell img {
+    border-radius: 4px;
+}
+
+.no-image-placeholder {
+    color: #999;
+    font-style: italic;
+}
+
+/* Ячейка с действиями */
+.action-cell {
+    white-space: nowrap;
+}
+
+/* Кнопки */
+.button-edit,
+.button-delete {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 2px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+}
+
+.button-edit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button-edit:hover {
+    background-color: #45a049;
+}
+
+.button-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.button-delete:hover {
+    background-color: #da190b;
+}
+
+/* Кнопка создания */
+.button-create {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #008CBA;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+.button-create:hover {
+    background-color: #007399;
+}
+
+/* Контейнер для кнопки справа */
+.right-aligned-container {
+    text-align: right;
+}
+
+/* Сообщения */
+.alert-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+}
+
+.alert-message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Пустое состояние */
+.empty-state-message {
+    text-align: center;
+    padding: 40px;
+    color: #666;
 }

@@ -3,22 +3,19 @@
 {% block title %}Фурнитура{% endblock %}
 
 {% block content %}
-<div class="fittings-container">
-    <div class="fittings-header">
-        <h1>Управление фурнитурой</h1>
-        <a href="{{ url_for('fitting_create') }}" class="btn-create">+ Создать фурнитуру</a>
-    </div>
+<div class="right-aligned-container">
+    <a href="{{ url_for('fitting_create') }}" class="button-create">+ Создать фурнитуру</a>
     
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
-                <div class="flash {{ category }}">{{ message }}</div>
+                <div class="alert-message {{ category }}">{{ message }}</div>
             {% endfor %}
         {% endif %}
     {% endwith %}
     
     {% if fittings %}
-    <table class="fittings-table">
+    <table class="furniture-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -32,21 +29,27 @@
             {% for fitting in fittings %}
             <tr>
                 <td>{{ fitting.id }}</td>
-                <td class="picture-cell">
+                <td class="image-cell">
                     {% if fitting.path_picture %}
                         <img src="{{ url_for('static', filename='images/fittings/' + fitting.path_picture.split('/')[-1]) }}" 
                              alt="{{ fitting.name }}" 
-                             style="width: 50px; height: 50px; object-fit: cover;">
+                             style="width: 150px; height: 150px; object-fit: cover;">
                     {% else %}
-                        <span class="no-image">Нет фото</span>
+                        <span class="no-image-placeholder">Нет фото</span>
                     {% endif %}
                 </td>
                 <td>{{ fitting.name }}</td>
-                <td>{{ fitting.weight if fitting.weight else '-' }} гр. </td>
-                <td class="actions">
-                    <a href="{{ url_for('fitting_edit', id=fitting.id) }}" class="btn-edit">Редактировать</a>
+                <td class="action-cell">
+                    {% if fitting.weight %}
+                        {{ fitting.weight }} гр.
+                    {% else %}
+                        
+                    {% endif %}
+                </td>
+                <td class="action-cell">
+                    <a href="{{ url_for('fitting_edit', id=fitting.id) }}" class="button-edit">Редактировать</a>
                     <form action="{{ url_for('fitting_delete', id=fitting.id) }}" method="POST" style="display: inline;">
-                        <button type="submit" class="btn-delete" onclick="return confirm('Удалить фурнитуру {{ fitting.name }}? Изображение переместится в корзину.')">Удалить</button>
+                        <button type="submit" class="button-delete" onclick="return confirm('Удалить фурнитуру {{ fitting.name }}? Изображение переместится в корзину.')">Удалить</button>
                     </form>
                 </td>
             </tr>
@@ -54,7 +57,7 @@
         </tbody>
     </table>
     {% else %}
-    <div class="empty-state">
+    <div class="empty-state-message">
         <p>Фурнитуры пока нет. Создайте первую фурнитуру!</p>
     </div>
     {% endif %}

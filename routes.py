@@ -2,14 +2,16 @@ from flask import render_template, request, redirect, url_for, flash
 from models import Color, Fitting, KitchenType, KitchenBase
 from extensions import db
 
-from utils import save_fitting_image, delete_fitting_image
+# Убираем secure_filename из импорта, так как она уже есть в utils
+from utils import save_fitting_image, delete_fitting_image, create_kitchen_folders, rename_kitchen_folders
+
+
 
 def register_routes(app):
     
     @app.route('/')
     def index():
         return render_template('index.html', show_header=False)
-        # return render_template('index.html', show_header=False)
 
     @app.route('/deals')
     def deals():
@@ -163,7 +165,6 @@ def register_routes(app):
         types = KitchenType.query.all()
         return render_template('kitchen_types.html', types=types, show_header=True)
 
-    # Создание
     @app.route('/kitchen-types/create', methods=['GET', 'POST'])
     def kitchen_type_create():
         if request.method == 'POST':
@@ -179,6 +180,11 @@ def register_routes(app):
             db.session.add(kitchen_type)
             db.session.commit()
             
+            # Создаем папки после успешного сохранения в БД
+            success, error = create_kitchen_folders(name)
+            if not success:
+                flash(f'Тип кухни создан, но не удалось создать папки: {error}', 'warning')
+            
             flash('Тип кухни успешно создан!', 'success')
             return redirect(url_for('kitchen_types'))
         
@@ -190,9 +196,19 @@ def register_routes(app):
         kitchen_type = KitchenType.query.get_or_404(id)
         
         if request.method == 'POST':
-            kitchen_type.name = request.form['name']
+            old_name = kitchen_type.name
+            new_name = request.form['name']
+            
+            # Обновляем данные
+            kitchen_type.name = new_name
             kitchen_type.short_name = request.form['short_name']
             db.session.commit()
+            
+            # Если имя изменилось, переименовываем папки
+            if old_name != new_name:
+                success, error = rename_kitchen_folders(old_name, new_name)
+                if not success:
+                    flash(f'Данные обновлены, но не удалось переименовать папки: {error}', 'warning')
             
             flash('Тип кухни успешно обновлён!', 'success')
             return redirect(url_for('kitchen_types'))

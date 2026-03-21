@@ -3,11 +3,9 @@
 {% block title %}Цвета{% endblock %}
 
 {% block content %}
-<div class="colors-container">
-    <div class="colors-header">
-        <h1>Управление цветами</h1>
+<div class="btn-right-container">
         <a href="{{ url_for('color_create') }}" class="btn-create">+ Создать цвет</a>
-    </div>
+</div>
     
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -48,5 +46,5 @@
         <p>Цветов пока нет. Создайте первый цвет!</p>
     </div>
     {% endif %}
-</div>
+
 {% endblock %}

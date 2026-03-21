@@ -3,11 +3,8 @@
 {% block title %}Типы кухни{% endblock %}
 
 {% block content %}
-
-<h1>Типы кухни</h1>
-
-<a href="{{ url_for('kitchen_type_create') }}">Создать тип кухни</a>
-
+<div class="btn-right-container">
+<a href="{{ url_for('kitchen_type_create') }} " class="btn-create">+Тип кухни</a>
 <table border="1" cellpadding="8" cellspacing="0">
     <thead>
         <tr>
@@ -33,7 +30,5 @@
         {% endfor %}
     </tbody>
 </table>
-
-<a href="{{ url_for('index') }}">На главную</a>
-
+</div>
 {% endblock %}
