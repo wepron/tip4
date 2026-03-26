@@ -1,5 +1,6 @@
 import os
 
+
 class Config:
     # Путь к базе данных (base.db3 лежит в корне проекта)
     BASE_DIR = os.path.abspath(os.path.dirname(__file__))
