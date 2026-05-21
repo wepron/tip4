@@ -21,6 +21,9 @@ class Fitting(db.Model):
     path_picture = db.Column(db.String(500))
     weight = db.Column(db.Float)  # вещественное число
 
+    def __repr__(self):
+        return f'<Fitting {self.name}>'
+
 
 class KitchenType(db.Model):
     __tablename__ = 'kitchen_types'
@@ -38,3 +41,18 @@ class KitchenBase(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     kitchen_base = db.Column(db.String(100), nullable=False, unique=True)
+
+
+class Module(db.Model):
+    __tablename__ = 'modules'
+
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    short_name = db.Column(db.String(200), nullable=False)
+    scheme_path = db.Column(db.String(500))
+    photo_path = db.Column(db.String(500))
+    kitchen_base_id = db.Column(db.Integer, nullable=False)
+    kitchen_type_id = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f'<Module {self.name}>'
