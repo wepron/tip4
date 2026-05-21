@@ -7,20 +7,22 @@
 <h1>{{ title }}</h1>
 
 <form method="POST">
+    <div class="form-group">
     <div>
         <label>Название:</label>
         <input type="text" name="name" value="{{ kitchen_type.name if kitchen_type else '' }}" required>
     </div>
-    
+    <br>
     <div>
         <label>Короткое название:</label>
         <input type="text" name="short_name" value="{{ kitchen_type.short_name if kitchen_type else '' }}" required>
     </div>
-    
+    <br>
     <div>
         <button type="submit">Сохранить</button>
+        <br><br>
         <a href="{{ url_for('kitchen_types') }}">Отмена</a>
-    </div>
+    </div></div>
 </form>
 
 {% endblock %}

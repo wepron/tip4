@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
-from models import Color, Fitting, KitchenType, KitchenBase
+from models import Color, Fitting, KitchenType, KitchenBase, Module
 from extensions import db
 
 # Убираем secure_filename из импорта, так как она уже есть в utils

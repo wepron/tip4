@@ -137,16 +137,19 @@
 }
 
 .form-group {
+    font-size: 1.2rem;
     margin-bottom: 15px;
 }
 
 .form-group label {
+    font-size: 1.5rem;
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+
 }
 
 .form-group input {
+    font-size: 1.5rem;
     width: 100%;
     padding: 8px;
     border: 1px solid #ddd;

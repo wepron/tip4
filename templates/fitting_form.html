@@ -24,14 +24,13 @@
         <div class="form-group">
             <label for="weight">Вес (гр. ):</label>
             <input type="number" id="weight" name="weight" step="any" value="{{ fitting.weight if fitting and fitting.weight else '' }}">
-            <small>Необязательно, но рекомендуется. Можно использовать дробные числа (например, 0.5)</small>
+            <small>Обязательно для весового товара (Саморезы, конфирматы. Например, 0.5)</small>
         </div>
         
         <div class="form-group">
             <label for="picture">Изображение:</label>
             {% if fitting and fitting.path_picture %}
                 <div class="current-picture">
-                    <p>Текущее изображение:</p>
                     <img src="{{ url_for('static', filename='images/fittings/' + fitting.path_picture.split('/')[-1]) }}" 
                          alt="{{ fitting.name }}" style="max-width: 500px;">
                 </div>

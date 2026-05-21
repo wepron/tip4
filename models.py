@@ -1,4 +1,5 @@
 from extensions import db
+from sqlalchemy import CheckConstraint
 # from sqlalchemy import text
 
 
@@ -51,8 +52,19 @@ class Module(db.Model):
     short_name = db.Column(db.String(200), nullable=False)
     scheme_path = db.Column(db.String(500))
     photo_path = db.Column(db.String(500))
-    kitchen_base_id = db.Column(db.Integer, nullable=False)
-    kitchen_type_id = db.Column(db.Integer, nullable=False)
+
+    # Внешние ключи
+    kitchen_base_id = db.Column(db.Integer,
+                                db.ForeignKey('kitchen_bases.id'),
+                                nullable=False)
+
+    kitchen_type_id = db.Column(db.Integer,
+                                db.ForeignKey('kitchen_types.id'),
+                                nullable=False)
+
+    boxes = db.Column(db.Integer,
+                      CheckConstraint('boxes >= 0'),
+                      nullable=False)
 
     def __repr__(self):
         return f'<Module {self.name}>'
