@@ -4,7 +4,61 @@
 
 {% block content %}
 
-<div>Какие то Модули</div>
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+    <h2>Модули</h2>
+    <a href="{{ url_for('module_create') }}" class="btn btn-primary">
+        + Добавить модуль
+    </a>
+</div>
 
+<div class="table-responsive">
+    <table class="modules-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Схема</th>
+                <th>Фото</th>
+                <th>Название</th>
+                <th>Тип кухни</th>
+                <th>Ящики</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for module in modules %}
+            <tr>
+                <td class="id-cell">{{ module.id }}</td>
+                <td class="image-cell">
+                    {% if module.scheme_path %}
+                        <img src="{{ url_for('static', filename=module.scheme_path) }}" 
+                             class="module-thumbnail" 
+                             alt="Схема">
+                    {% else %}
+                        <span class="no-image">—</span>
+                    {% endif %}
+                </td>
+                <td class="image-cell">
+                    {% if module.photo_path %}
+                        <img src="{{ url_for('static', filename=module.photo_path) }}" 
+                             class="module-thumbnail" 
+                             alt="Фото">
+                    {% else %}
+                        <span class="no-image">—</span>
+                    {% endif %}
+                </td>
+                <td class="name-cell">{{ module.name }}</td>
+                <td class="type-cell">{{ module.kitchen_type.name if module.kitchen_type else '-' }}</td>
+                <td class="boxes-cell">{{ module.boxes }}</td>
+                <td class="actions-cell">
+                    <a href="{{ url_for('module_edit', id=module.id) }}" class="btn-edit-small">Ред.</a>
+                    <form method="POST" action="{{ url_for('module_delete', id=module.id) }}" style="display: inline;">
+                        <button type="submit" class="btn-delete-small" onclick="return confirm('Точно удалить модуль?')">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}

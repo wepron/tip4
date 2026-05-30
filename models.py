@@ -66,5 +66,7 @@ class Module(db.Model):
                       CheckConstraint('boxes >= 0'),
                       nullable=False)
 
+    kitchen_type = db.relationship('KitchenType', backref='modules')
+
     def __repr__(self):
         return f'<Module {self.name}>'

@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>{{ title }}</h2>
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="name" class="form-label">Название</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ module.name if module else '' }}" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="short_name" class="form-label">Короткое имя</label>
+            <input type="text" class="form-control" id="short_name" name="short_name" value="{{ module.short_name if module else '' }}" required>
+        </div>
+        
+        <div class="mb-3">
+            <label for="scheme_path" class="form-label">Схема (изображение)</label>
+            {% if module and module.scheme_path %}
+                <div class="mb-2">
+                    <img src="{{ url_for('static', filename=module.scheme_path) }}" style="max-width: 200px;">
+                    <br><small>Текущая схема</small>
+                </div>
+            {% endif %}
+            <input type="file" class="form-control" id="scheme_path" name="scheme_path" accept="image/*">
+        </div>
+        
+        <div class="mb-3">
+            <label for="photo_path" class="form-label">Фото модуля</label>
+            {% if module and module.photo_path %}
+                <div class="mb-2">
+                    <img src="{{ url_for('static', filename=module.photo_path) }}" style="max-width: 200px;">
+                    <br><small>Текущее фото</small>
+                </div>
+            {% endif %}
+            <input type="file" class="form-control" id="photo_path" name="photo_path" accept="image/*">
+        </div>
+        
+        <div class="mb-3">
+            <label for="kitchen_base_id" class="form-label">База кухни</label>
+            <select class="form-control" id="kitchen_base_id" name="kitchen_base_id" required>
+                <option value="">Выберите...</option>
+                {% for base in kitchen_bases %}
+                <option value="{{ base.id }}" {% if module and module.kitchen_base_id == base.id %}selected{% endif %}>
+                    {{ base.kitchen_base }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label for="kitchen_type_id" class="form-label">Тип кухни</label>
+            <select class="form-control" id="kitchen_type_id" name="kitchen_type_id" required>
+                <option value="">Выберите...</option>
+                {% for type in kitchen_types %}
+                <option value="{{ type.id }}" {% if module and module.kitchen_type_id == type.id %}selected{% endif %}>
+                    {{ type.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="mb-3">
+            <label for="boxes" class="form-label">Количество ящиков</label>
+            <input type="number" class="form-control" id="boxes" name="boxes" value="{{ module.boxes if module else 0 }}" min="0" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+        <a href="{{ url_for('modules') }}" class="btn btn-secondary">Отмена</a>
+    </form>
+</div>
+{% endblock %}

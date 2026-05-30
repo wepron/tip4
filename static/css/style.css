@@ -415,3 +415,190 @@
     padding: 40px;
     color: #666;
 }
+
+
+/* ========== ТАБЛИЦА МОДУЛЕЙ ========== */
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.modules-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Заголовки */
+.modules-table th {
+    background-color: #2c3e50;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    border: 1px solid #34495e;
+}
+
+/* Ячейки */
+.modules-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+/* Строки - зебра */
+.modules-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.modules-table tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.modules-table tbody tr:hover {
+    background-color: #f5f5f5;
+    transition: background-color 0.3s ease;
+}
+
+/* Ячейка с ID */
+.id-cell {
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    width: 60px;
+}
+
+/* Ячейки с изображениями */
+.image-cell {
+    text-align: center;
+    width: 80px;
+}
+
+.module-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #eee;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.module-thumbnail:hover {
+    transform: scale(1.1);
+    border-color: #3498db;
+}
+
+.no-image {
+    color: #bbb;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Название модуля */
+.name-cell {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Тип кухни */
+.type-cell {
+    color: #555;
+}
+
+/* Ящики */
+.boxes-cell {
+    text-align: center;
+    font-weight: bold;
+    color: #e67e22;
+}
+
+/* Действия */
+.actions-cell {
+    white-space: nowrap;
+    text-align: center;
+    width: 120px;
+}
+
+.btn-edit-small {
+    background-color: #3498db;
+    color: white;
+    padding: 5px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-edit-small:hover {
+    background-color: #2980b9;
+}
+
+.btn-delete-small {
+    background-color: #e74c3c;
+    color: white;
+    padding: 5px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 12px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete-small:hover {
+    background-color: #c0392b;
+}
+
+/* ========== АДАПТИВ ДЛЯ МОБИЛОК ========== */
+@media (max-width: 768px) {
+    .modules-table th,
+    .modules-table td {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+    
+    .module-thumbnail {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .image-cell {
+        width: 55px;
+    }
+    
+    .actions-cell {
+        width: 100px;
+    }
+    
+    .btn-edit-small,
+    .btn-delete-small {
+        padding: 4px 8px;
+        font-size: 10px;
+    }
+}
+
+/* Для очень маленьких экранов */
+@media (max-width: 480px) {
+    .modules-table th {
+        font-size: 11px;
+        padding: 6px 8px;
+    }
+    
+    .modules-table td {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    
+    .module-thumbnail {
+        width: 30px;
+        height: 30px;
+    }
+}
